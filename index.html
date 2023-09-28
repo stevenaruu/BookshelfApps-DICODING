@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Apps</title>
+    <link rel="stylesheet" href="./src/styles/style.css">
+
+    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>Bookshelf Apps</h1>
+            <p>Kuasailah semua buku, tapi jangan biarkan buku menguasai Anda. Membacalah untuk hidup, bukan hidup untuk
+                membaca</p>
+        </div>
+        <nav>
+            <div class="search">
+                <input type="text" placeholder="Cari buku ..." />
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="input-section">
+            <h2>Masukkan buku baru</h2>
+            <form id="inputBook">
+                <div class="input">
+                    <label for="inputBookTitle">Judul</label>
+                    <input id="inputBookTitle" type="text" required>
+                </div>
+                <div class="input">
+                    <label for="inputBookAuthor">Penulis</label>
+                    <input id="inputBookAuthor" type="text" required>
+                </div>
+                <div class="input">
+                    <label for="inputBookYear">Tahun</label>
+                    <input id="inputBookYear" type="number" required>
+                </div>
+                <div class="input_inline">
+                    <label for="inputBookIsComplete">Selesai dibaca</label>
+                    <input id="inputBookIsComplete" type="checkbox">
+                </div>
+                <button id="bookSubmit" type="submit">Masukkan Buku ke rak <span>Belum selesai dibaca</span></button>
+            </form>
+        </section>
+        <section class="shelf-section">
+            <h2>Belum selesai dibaca</h2>
+            <div class="book-card-container" id="incompleteBookshelfList">
+                <article class="book-card">
+                    <h3>Bentala</h3>
+                    <p>Penulis: Steven Forsythia</p>
+                    <p>Tahun: 2022</p>
+                    <div class="button-action">
+                        <button class="green-button">Selesai dibaca</button>
+                        <button class="red-button">Hapus buku</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="shelf-section">
+            <h2>Sudah selesai dibaca</h2>
+            <div class="book-card-container">
+                <article class="book-card">
+                    <h3>Princess of Ghost</h3>
+                    <p>Penulis: Steven Forsythia</p>
+                    <p>Tahun: 2022</p>
+                    <div class="button-action">
+                        <button class="green-button">Belum selesai dibaca</button>
+                        <button class="red-button">Hapus buku</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
