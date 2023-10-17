@@ -45,6 +45,13 @@ h2 {
     margin: 2rem 0;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .search > input, .input > input {
     padding: 10px 15px;
     width: 100%;
@@ -83,7 +90,7 @@ main > section > form {
     margin-bottom: 1rem;
 }
 
-#inputBook > button, .button-action > button {
+#inputBook > button, .button-action > button, .modal-button-action > button {
     color: white;
     border: 0;
     border-radius: 0.5rem;
@@ -129,10 +136,57 @@ main > section > form {
     margin-top: 0.5rem;
 }
 
+#search-button {
+    text-align: start;
+    border-radius: 0.25rem;
+    padding: 0.5rem 3rem;
+    background-color: #6b7280;
+    color: white;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border: 0;
+    cursor: pointer;
+}
+
 .red-button {
     background-color: #ef4444;
 }
 
 .green-button {
     background-color: #34d399;
+}
+
+.modal-container {
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.modal {
+    background-color: white;
+    width: 30%;
+    height: 35%;
+    border-radius: 0.5rem;
+    padding: 3rem;
+}
+
+.modal-button-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.confirm-text {
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 600;
 }

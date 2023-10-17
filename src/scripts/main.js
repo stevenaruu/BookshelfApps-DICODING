@@ -1,4 +1,5 @@
 const books = [];
+let searchValue = "";
 
 const RENDER_EVENT = 'render-todo';
 const SAVED_EVENT = 'saved-todo';
@@ -23,6 +24,13 @@ const findBook = (bookId) => {
         if (book.id === bookId) return book;
     }
     return null;
+}
+
+const findBookIndex = (bookId) => {
+    for (const index in books) {
+        if (books[index].id === bookId) return index;
+    }
+    return -1;
 }
 
 const isStorageExists = () => {
@@ -98,6 +106,10 @@ const makeBook = (bookObject) => {
     deleteButton.classList.add('red-button');
     deleteButton.textContent = 'Hapus buku';
 
+    deleteButton.addEventListener('click', () => {
+        deleteBook(id);
+    })
+
     buttonContainer.appendChild(deleteButton);
 
     article.appendChild(h3);
@@ -106,6 +118,52 @@ const makeBook = (bookObject) => {
     article.appendChild(buttonContainer);
 
     return article;
+}
+
+const deleteBook = (bookId) => {
+    const bookTarget = findBookIndex(bookId);
+
+    if (bookTarget === -1) return;
+
+    const section = document.createElement('section');
+    section.classList.add('modal-container');
+
+    const article = document.createElement('article');
+    article.classList.add('book-card');
+
+    const confirmText = document.createElement('p');
+    confirmText.classList.add('confirm-text');
+    confirmText.textContent = 'Apakah anda yakin ingin menghapus buku ini?';
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('modal-button-action');
+
+    const approveButton = document.createElement('button');
+    approveButton.classList.add('green-button');
+    approveButton.textContent = 'Ya';
+
+    const rejectButton = document.createElement('button');
+    rejectButton.classList.add('red-button');
+    rejectButton.textContent = 'Tidak';
+
+    section.appendChild(article);
+    article.appendChild(confirmText);
+    article.appendChild(buttonContainer);
+    buttonContainer.appendChild(approveButton);
+    buttonContainer.appendChild(rejectButton);
+    document.body.appendChild(section);
+    
+    approveButton.addEventListener('click', () => {
+        books.splice(bookTarget, 1);
+
+        document.dispatchEvent(new Event(RENDER_EVENT));
+        saveData();
+        section.remove();
+    })
+
+    rejectButton.addEventListener('click', () => {
+        section.remove();
+    })
 }
 
 const addBookToIsCompleteOrInComplete = (bookId) => {
@@ -140,20 +198,26 @@ const addBook = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const submitForm = document.getElementById('inputBook');
+    const searchButton = document.getElementById('search-button');
 
     submitForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addBook();
     })
 
+    searchButton.addEventListener('click', () => {
+        searchValue = document.getElementById('search-value').value;
+        document.dispatchEvent(new Event(RENDER_EVENT));
+    })
+
     if (isStorageExists()) loadDataFromStorage();
 });
 
 document.addEventListener(SAVED_EVENT, () => {
-    console.log('Book stored to local storage.');
+    console.log('Book updated.');
 });
 
-document.addEventListener(RENDER_EVENT, function () {
+document.addEventListener(RENDER_EVENT, () => {
     const inComplete = document.getElementById('inCompleteBookshelfList');
     const isComplete = document.getElementById('isCompleteBookshelfList');
 
@@ -161,10 +225,12 @@ document.addEventListener(RENDER_EVENT, function () {
     isComplete.innerHTML = '';
 
     for (const book of books) {
-        const bookElement = makeBook(book);
+        if (book.title.toLowerCase().includes(searchValue.toLowerCase())) {
+            const bookElement = makeBook(book);
 
-        if (book.isComplete) isComplete.append(bookElement);
-        else inComplete.append(bookElement);
+            if (book.isComplete) isComplete.append(bookElement);
+            else inComplete.append(bookElement);
+        }
     }
 })
 
