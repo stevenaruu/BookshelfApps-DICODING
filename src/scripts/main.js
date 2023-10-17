@@ -18,6 +18,13 @@ const generateBookObject = (id, title, author, year, isComplete) => {
     }
 }
 
+const findBook = (bookId) => {
+    for (const book of books) {
+        if (book.id === bookId) return book;
+    }
+    return null;
+}
+
 const isStorageExists = () => {
     if (typeof Storage === undefined) {
         alert('Your browser is not support local storage');
@@ -65,15 +72,32 @@ const makeBook = (bookObject) => {
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('button-action');
 
-    const finishButton = document.createElement('button');
-    finishButton.classList.add('green-button');
-    finishButton.textContent = 'Selesai dibaca';
+    const finishAndUnfinishButton = document.createElement('button');
+
+    if (isComplete) {
+        finishAndUnfinishButton.classList.add('green-button');
+        finishAndUnfinishButton.textContent = 'Belum selesai dibaca';
+
+        buttonContainer.appendChild(finishAndUnfinishButton);
+
+        finishAndUnfinishButton.addEventListener('click', () => {
+            addBookToIsCompleteOrInComplete(id);
+        })
+    } else {
+        finishAndUnfinishButton.classList.add('green-button');
+        finishAndUnfinishButton.textContent = 'Selesai dibaca';
+
+        buttonContainer.appendChild(finishAndUnfinishButton);
+
+        finishAndUnfinishButton.addEventListener('click', () => {
+            addBookToIsCompleteOrInComplete(id);
+        })
+    }
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('red-button');
     deleteButton.textContent = 'Hapus buku';
 
-    buttonContainer.appendChild(finishButton);
     buttonContainer.appendChild(deleteButton);
 
     article.appendChild(h3);
@@ -81,7 +105,19 @@ const makeBook = (bookObject) => {
     article.appendChild(yearParagraph);
     article.appendChild(buttonContainer);
 
-    return article; 
+    return article;
+}
+
+const addBookToIsCompleteOrInComplete = (bookId) => {
+    const bookTarget = findBook(bookId);
+
+    if (bookTarget === null) return;
+
+    if (bookTarget.isComplete) bookTarget.isComplete = false;
+    else bookTarget.isComplete = true;
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
 }
 
 const addBook = () => {
