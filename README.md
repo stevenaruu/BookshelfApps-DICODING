@@ -9,5 +9,5 @@ Final Project [Belajar Membuat Front-End Web untuk Pemula](https://www.dicoding.
 ## `Bookshelf Apps`
 In an age marked by digital innovation, bookshelf apps have emerged as a brilliant fusion of literature and technology, revolutionizing the way we read, organize, and cherish our beloved books. These versatile applications serve as a gateway to an extensive literary universe, bringing the convenience of an entire library right into the palm of your hand. Here's a closer look at the captivating world of bookshelf apps.
 <div align="center">
-  <img src="" alt="Bookshelf Apps prototype">
+  <img src="https://github.com/stevenaruu/BookshelfApps-DICODING/assets/105982460/88e80f13-2aef-4861-9273-5b8f7c848712" alt="Bookshelf Apps prototype">
 </div>
