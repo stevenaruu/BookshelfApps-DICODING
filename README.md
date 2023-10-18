@@ -2,7 +2,7 @@
 Final Project [Belajar Membuat Front-End Web untuk Pemula](https://www.dicoding.com/) from [Dicoding Indonesia](https://www.dicoding.com/).
 <br>
 <div align="center">
-  <img src="" alt="Belajar Membuat Front-End Web untuk Pemula certificate">
+  <img src="https://github.com/stevenaruu/BookshelfApps-DICODING/assets/105982460/64dd6cf4-d1a0-4d12-bb05-dd2e9f351712" alt="Belajar Membuat Front-End Web untuk Pemula certificate">
 </div>
 <br>
 
